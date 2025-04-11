@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Selamat Menikah</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .poster {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 550px;
+      position: relative;
+      animation: fadeIn 2s ease-out;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 56px;
+      color: #d36c6c;
+      margin-bottom: 10px;
+      animation: slideDown 1.5s ease-out;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #555;
+      margin-top: 0;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .names {
+      font-size: 32px;
+      color: #8b0000;
+      font-weight: bold;
+      margin: 20px 0;
+      animation: fadeInUp 2.5s ease-out;
+    }
+
+    .date {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 25px;
+      animation: fadeIn 3s ease-out;
+    }
+
+    .timer {
+      font-size: 18px;
+      margin: 10px 0;
+      background-color: #fbeeee;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    }
+
+    .flowers {
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 180px;
+      opacity: 0.6;
+      animation: floatIn 3s ease-out forwards;
+    }
+
+    .watermark {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      font-size: 12px;
+      color: #aaa;
+      font-family: sans-serif;
+    }
+
+    .watermark a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    .watermark a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .location-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #d36c6c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .location-button:hover {
+      background-color: #a93d3d;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-30px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {transform: translateY(30px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes floatIn {
+      0% { transform: translate(-50px, -50px); opacity: 0; }
+      100% { transform: translate(0, 0); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Menambahkan musik otomatis -->
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/8bWRU2ipOwA?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  
+  <img src="https://cdn.pixabay.com/photo/2021/03/19/08/36/roses-6106109_1280.png" class="flowers" alt="bunga hias" />
+  <div class="poster">
+    <h1>Selamat Menikah</h1>
+    <h2>Kepada</h2>
+    <div class="names">Kak Dian & Bg Riki</div>
+    <div class="date">Diselenggarakan pada<br><strong>12 April 2025</strong></div>
+    
+    <div class="timer" id="akadTimer">⏰ Akad: menghitung...</div>
+    <div class="timer" id="resepsiTimer">⏰ Resepsi: menghitung...</div>
+
+    <footer>Semoga menjadi keluarga yang sakinah, mawaddah, warahmah.</footer>
+    <div class="watermark">
+      <a href="https://www.instagram.com/banu.tsaqif_/" target="_blank">
+        special present @banu.tsaqif_
+      </a>
+    </div>
+    
+    <!-- Tombol Lihat Lokasi -->
+    <a href="https://web.facebook.com/flx/warn/?u=https%3A%2F%2Fgoo.gl%2Fmaps%2FQLqiEM8AyJY5jTH69&h=AT0NoFmOVtqJnwTdbeqYuW51fjz79LxMKA6rNrT5vLHBrwjXVRToB8dN9cmtnm0m-DtWTnwBA7gERT4u6W6HY4-HeYLehAgp9rDwD1F29OCCyZSG-pN6Bn51X2nRke1R&_rdc=1&_rdr#" target="_blank">
+      <button class="location-button">Lihat Lokasi</button>
+    </a>
+  </div>
+
+  <script>
+    function updateCountdown(id, targetDate) {
+      const element = document.getElementById(id);
+      setInterval(() => {
+        const now = new Date();
+        const diff = targetDate - now;
+        const isPast = diff < 0;
+        const absDiff = Math.abs(diff);
+
+        const hours = Math.floor(absDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((absDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((absDiff % (1000 * 60)) / 1000);
+
+        const prefix = isPast ? "+" : "-";
+        element.textContent = `⏰ ${id === 'akadTimer' ? 'Akad' : 'Resepsi'}: ${prefix} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    const akadDate = new Date("2025-04-12T09:00:00");
+    const resepsiDate = new Date("2025-04-12T11:00:00");
+
+    updateCountdown("akadTimer", akadDate);
+    updateCountdown("resepsiTimer", resepsiDate);
+  </script>
+</body>
+</html>
